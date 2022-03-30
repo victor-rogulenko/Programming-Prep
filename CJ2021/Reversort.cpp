@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define USE_STANDARD_IO true
+//#define USE_STANDARD_IO true
 
 
 vector<vector<int>> ReadTestCases (int T) {

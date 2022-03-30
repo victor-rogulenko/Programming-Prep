@@ -1,6 +1,10 @@
-Case #1: 6
-Case #2: 1
-Case #3: 12
-Case #4: 2
-Case #5: 4
-Case #6: 8
+Case #1: 1 2 
+Case #2: 2 1 
+Case #3: IMPOSSIBLE
+Case #4: IMPOSSIBLE
+Case #5: IMPOSSIBLE
+Case #6: 2 3 1 4 
+Case #7: 1 2 
+Case #8: 2 4 3 1 5 6 7 
+Case #9: IMPOSSIBLE
+Case #10: IMPOSSIBLE
