@@ -7,7 +7,7 @@ using namespace std;
 
 #define INF 1500000000
 
-//#define USE_STANDARD_IO true
+#define USE_STANDARD_IO true
 
 struct TestCase {
 	// C is 0 and J is 1
