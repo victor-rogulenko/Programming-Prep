@@ -1,5 +1,10 @@
-Case #1: 4
-Case #2: 5
-Case #3: 9
-Case #4: 1
-Case #5: 2
+Case #1: 110
+Case #2: 300
+Case #3: 14
+Case #4: 490
+Case #5: 220
+Case #6: 0
+Case #7: 110
+Case #8: 60
+Case #9: 320
+Case #10: 10000000000
