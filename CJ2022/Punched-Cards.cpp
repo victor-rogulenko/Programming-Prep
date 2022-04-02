@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//#define USE_STANDARD_IO true
+#define USE_STANDARD_IO true
 int casenum = 1;
 
 void solve() {
