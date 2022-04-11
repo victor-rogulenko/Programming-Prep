@@ -3,11 +3,19 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+int casenum = 1;
 
+//Uncomment to use standard input/output:
 //#define USE_STANDARD_IO true
 
-void solve() {
 
+void solve() {
+    long long int res = 0;
+
+    // insert code here
+
+    cout << "Case #" << casenum << ": " << res << endl;
+    casenum++;
 }
 
 int main() {
