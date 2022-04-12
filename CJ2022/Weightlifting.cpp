@@ -6,7 +6,7 @@ using namespace std;
 int casenum = 1;
 
 //Uncomment to use standard input/output:
-//#define USE_STANDARD_IO true
+#define USE_STANDARD_IO true
 const int INF = 1000000000;
 
 void solve() {
