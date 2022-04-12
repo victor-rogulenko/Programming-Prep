@@ -1,5 +1,5 @@
 // Created by Victor Rogulenko
-// Date and time: 17:39 02/04/2022
+// Date and time: 10:45 12/04/2022
 
 #include <bits/stdc++.h>
 #include <random>
@@ -10,63 +10,48 @@ using namespace std;
 void solve() {
     long long int N, K;
     cin >> N >> K;
-    vector<int> edges;
-    long long int loc, loc_first, e, sum_edges;
-    cin >> loc_first >> e;
-    sum_edges = e;
-    edges.push_back(e);
+    long long int loc, e, sum_edges_T, sum_edges_W;
+    cin >> loc >> sum_edges_T;
+    sum_edges_W = 0;
+    set<int> visited;
+    visited.insert(loc);
+
     vector<int> node_ord(N);
     iota(node_ord.begin(), node_ord.end(), 1);
     shuffle(node_ord.begin(), node_ord.end(), mt19937{random_device{}()});
+    
     int it = 0;
+    int Tctr = 0;
+    int Wctr = 0;
     auto limit = K;
     while (it < min(limit, N)) {
-        if (node_ord[it] != loc_first) {
-            cout << "T " << node_ord[it] << endl;
-            cin >> loc >> e;
-            sum_edges += e;
-            edges.push_back(e);
-        } else {
+        if (visited.find(node_ord[it]) != visited.end()) {
             limit++;
+            it++;
+            continue;
         }
+        cout << "T " << node_ord[it] << endl;
+        cin >> loc >> e;
+        visited.insert(loc);
+        sum_edges_T += e;
+        Tctr++;
         it++;
+        if (it < limit) {
+            cout << "W" << endl;
+            cin >> loc >> e;
+            if (visited.find(loc) == visited.end()) {
+                visited.insert(loc);
+                sum_edges_W += e;
+                Wctr++;
+            }
+            it++;
+        }
     }
 
-    if (edges.size() == N) {   
-    // if we had enough questions to ask about every node
-        cout << "E " << sum_edges/2 << endl;
-        return;
-    }
+    long long int result = sum_edges_W + sum_edges_T + 
+                           round(sum_edges_T / Tctr * (N - Tctr - Wctr));
 
-    long long int min_val = 0;
-    // Min possible number of edges
-    int alloc = 0;
-    sort(edges.rbegin(),edges.rend());
-    for (auto i : edges) {
-        alloc -= i;
-        alloc = abs(alloc);
-    }
-    min_val = ((sum_edges - alloc)/2) + alloc + round(sum_edges*(N-K-1)/K/2);
-
-    long long int  max_val = 0;
-    // Max possible number of edges
-    if (sum_edges <= (N - K - 1) * (K + 1)) {
-        max_val = sum_edges + (((N - K - 1) * (N - K - 2))/2);
-    } else {
-        int leftover = sum_edges - (N - K - 1) * (K + 1);
-        // quick but possibly imprecise:
-        max_val = (N - K - 1) * (K + 1) + (leftover/2) + (((N - K - 1) * (N - K - 2))/2);
-    }
-    long long int result;
-    if (N < 100) {
-        result = min_val;
-    } else if (sum_edges > (K*(K-1)/4)) {
-        result = max_val;
-    } else {
-        result = min_val;
-    }
-
-    cout << "E " << result << endl;
+    cout << "E " << result/2 << endl;
     //cout << min_val << " " << max_val << endl;
 }
 
