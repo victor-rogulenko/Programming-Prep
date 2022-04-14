@@ -1,3 +1,45 @@
-Case #1: 4
-Case #2: 12
-Case #3: 20
+cur = 0, sum = 9, product = 0
+cur = 1, sum = 9, product = 0
+cur = 2, sum = 9, product = 0
+cur = 3, sum = 9, product = 0
+cur = 3, sum = 7, product = 0
+cur = 3, sum = 5, product = 0
+cur = 3, sum = 1, product = 0
+cur = 2, sum = 7, product = 0
+cur = 3, sum = 7, product = 0
+cur = 3, sum = 5, product = 0
+cur = 3, sum = 3, product = 0
+cur = 3, sum = -1, product = 0
+cur = 1, sum = 8, product = 0
+cur = 2, sum = 8, product = 0
+cur = 3, sum = 8, product = 0
+cur = 3, sum = 6, product = 0
+cur = 3, sum = 4, product = 0
+cur = 3, sum = 0, product = 0
+cur = 2, sum = 6, product = 0
+cur = 3, sum = 6, product = 0
+cur = 3, sum = 4, product = 0
+cur = 3, sum = 2, product = 0
+cur = 3, sum = -2, product = 0
+Case #1: 0
+cur = 0, sum = 2, product = 0
+cur = 1, sum = 2, product = 0
+cur = 1, sum = 0, product = 0
+Case #2: 0
+cur = 0, sum = 11, product = 0
+cur = 1, sum = 11, product = 0
+cur = 2, sum = 11, product = 0
+cur = 2, sum = 8, product = 0
+cur = 2, sum = 2, product = 0
+cur = 2, sum = -16, product = 0
+cur = 1, sum = 10, product = 0
+cur = 2, sum = 10, product = 0
+cur = 2, sum = 7, product = 0
+cur = 2, sum = 1, product = 0
+cur = 2, sum = -17, product = 0
+cur = 1, sum = 10, product = 0
+cur = 2, sum = 10, product = 0
+cur = 2, sum = 7, product = 0
+cur = 2, sum = 1, product = 0
+cur = 2, sum = -17, product = 0
+Case #3: 0
