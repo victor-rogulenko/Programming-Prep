@@ -9,34 +9,9 @@ int casenum = 1;
 #define USE_STANDARD_IO true
 
 int M;
+int max_second_sum = 30000;
 vector<int> P;
 vector<long long int> N;
-
-long long int dp(int cur, long long int sum, long long int product) {
-    // cout << "cur = " << cur << ", sum = " << sum << ", product = " << product << endl;
-        if ((product == sum) & (cur == M)) {
-        return product;
-    }
-    if ((product > sum) | (cur >= M)) {
-        return 0;
-    }
-
-    long long int res = dp(cur+1, sum, product);
-    long long int new_element = 1;
-
-    for (long long int j = 1; j <= N[cur]; j++) {
-        new_element *= P[cur];
-        if (product*new_element > sum) {
-            break;
-        }
-        long long int new_res = dp(cur+1, sum - P[cur]*j, product*new_element);
-        if (new_res > res) {
-            res = new_res;
-        }
-    }
-
-    return res;
-}
 
 void solve() {
     long long int res = 0;
@@ -49,7 +24,42 @@ void solve() {
         sum += P[i]*N[i];
     }
 
-    res = dp(0, sum, 1);
+    for (long long int first = sum; (first >= sum - max_second_sum) & (first > 0); first--) {
+        vector<int> factorization(M, 0);
+        long long int candidate = first;
+        //cout << "first = " << candidate << endl;
+        for (int i = 0; i < M; i++) {
+            for (int j = 1; j <= N[i]; j++) {
+                if (candidate % P[i] == 0) {
+                    candidate /= P[i];
+                    factorization[i]++;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        //cout << "candidate = " << candidate << endl;
+
+        if (candidate > 1) {
+            continue;
+        }
+
+        long long int sum_first = 0;
+
+        for (int i = 0; i < M; i++) {
+            if (factorization[i] > N[i]) {
+                break;
+            }
+            sum_first += P[i]*(N[i]-factorization[i]);
+        }
+
+        //cout << "sum_first = " << sum_first << endl;
+
+        if ((first == sum_first) & (res < first)) {
+            res = first;
+        }
+    }
 
     cout << "Case #" << casenum << ": " << res << endl;
     casenum++;
