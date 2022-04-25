@@ -16,7 +16,7 @@ int convert(int start) {
 	return result;
 }
 
-bool checkLucky(int start) {
+bool isHappy(int start) {
 	int iter = 0;
 	while (iter < MAXITER) {
 		start = convert(start);
