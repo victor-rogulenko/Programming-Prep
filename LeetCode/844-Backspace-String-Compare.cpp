@@ -5,53 +5,43 @@
 #include <vector>
 #include <cassert>
 
-std::vector<bool> buildMaskOfRemainingCharacters(const std::string& s) {
-    std::vector<bool> result(s.length(), true); //true if not erased
-    int idx = 0;
-    while (idx < s.length()) {
-        if (s[idx] == '#') {
-            result[idx] = false;
-            int jdx = idx - 1;
-            while ((jdx >= 0) && (!result[jdx])) {
-                --jdx;
-            }
-            if (jdx >= 0) {
-                result[jdx] = false;
-            }
-        }
-        ++idx;
-    }
-    return result;
-}
-
 bool backspaceCompare(std::string s, std::string t) {
-    std::vector<bool> mask_s = buildMaskOfRemainingCharacters(s);
-    std::vector<bool> mask_t = buildMaskOfRemainingCharacters(t);
-    int idx_s = 0, idx_t = 0;
-    while ((idx_s < s.length()) && (idx_t < t.length())) {
-        while ((idx_s < s.length()) && (!mask_s[idx_s])) {
-            ++idx_s;
+    int idx_s = s.length() - 1;
+    int idx_t = t.length() - 1;
+    int ctr_bsp_s = 0;
+    int ctr_bsp_t = 0;
+    while ((idx_s >= 0) || (idx_t >= 0)) {
+    //  Find characters remaining after backspace
+        while (idx_s >= 0) {
+            if (s[idx_s] == '#') {
+                ++ctr_bsp_s;
+                --idx_s;
+            } else if (ctr_bsp_s > 0) {
+                --ctr_bsp_s;
+                --idx_s;
+            } else break;
         }
-        while ((idx_t < t.length()) && (!mask_t[idx_t])) {
-            ++idx_t;
+        while (idx_t >= 0) {
+            if (t[idx_t] == '#') {
+                ++ctr_bsp_t;
+                --idx_t;
+            } else if (ctr_bsp_t > 0) {
+                --ctr_bsp_t;
+                --idx_t;
+            } else break;
         }
-        if (((idx_s < s.length()) && (idx_t >= t.length())) ||
-            ((idx_s >= s.length()) && (idx_t < t.length()))) {
+    //  Check that the characters are the same
+        if ((idx_s >= 0) && (idx_t >= 0) && (s[idx_s] != t[idx_t])) {
             return false;
         }
-        if ((idx_s < s.length()) && (idx_t < t.length()) && (s[idx_s] != t[idx_t])) {
+    //  Check if one of the strigs ended before the other
+        if ((idx_s >= 0) != (idx_t >= 0)) {
             return false;
         }
-        ++idx_s;
-        ++idx_t;
+        --idx_s;
+        --idx_t;
     }
-    while ((idx_s < s.length()) && (!mask_s[idx_s])) {
-        ++idx_s;
-    }
-    while ((idx_t < t.length()) && (!mask_t[idx_t])) {
-        ++idx_t;
-    }
-    return ((idx_s >= s.length()) & (idx_t >= t.length()));    
+    return true;  
 }
 
 void RunTestCases() {
