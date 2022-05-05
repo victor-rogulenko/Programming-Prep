@@ -4,31 +4,20 @@
 #include <string>
 #include <cassert>
 
-std::string::iterator findNewDuplicate(std::string& s, std::string::iterator start) {
-    std::string::iterator cur_it = start;
-    while (cur_it < s.end()) {
-        if (*(cur_it - 1) == *cur_it) {
-            return (cur_it - 1);
-        }
-        ++cur_it;
-    }
-    return cur_it;
-}
-
 std::string removeDuplicates(std::string s) {
-    std::string::iterator cur_it = s.begin() + 1;
-    do {
-        cur_it = findNewDuplicate(s, cur_it);
-        if (cur_it != s.end()) {
-            auto temp = cur_it + 2;
-            s.erase(cur_it, cur_it + 2);
-            if (s.length() == 0) {
-                return s;
-            }
-            cur_it = (cur_it == s.begin() ? s.begin() + 1 : cur_it);
+    if (s.empty()) {
+        return s;
+    }
+    std::string result = "";
+    result += s[0]; 
+    for (int idx = 1; idx < s.length(); ++idx) {
+        if ((result.empty()) || (result.back() != s[idx])) {
+            result += s[idx]; 
+        } else {
+            result.pop_back();
         }
-    } while (cur_it != s.end());
-    return s;    
+    }
+    return result;    
 }
 
 void RunTestCases() {
