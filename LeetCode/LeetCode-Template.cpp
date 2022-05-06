@@ -1,6 +1,6 @@
 // LeetCode:
 // Created by Victor Rogulenko
-// May XX, 2022
+// May 6, 2022
 
 #include <cassert>
 
