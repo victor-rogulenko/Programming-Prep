@@ -36,15 +36,15 @@ std::vector<std::vector<int>> combinationSumGivenMaxMinElements(
     }
 
     // Check if we can make a combo for n given the constraints
-    // int min_sum = 0, max_sum = 0;
-    // for (int i = 0; i < ctr; ++i) {
-    //     min_sum += (min_element + i);
-    //     max_sum += (max_element - i);
-    // }
-    // if ((target_sum > max_sum) || (target_sum < min_sum) ||
-    //     (ctr <= 0)) {
-    //     return result;
-    // }
+    int min_sum = 0, max_sum = 0;
+    for (int i = 0; i < ctr; ++i) {
+        min_sum += (min_element + i);
+        max_sum += (max_element - i);
+    }
+    if ((target_sum > max_sum) || (target_sum < min_sum) ||
+        (ctr <= 0)) {
+        return result;
+    }
 
     for (int elm = max_element; elm >= min_element; --elm) {
         std::vector<std::vector<int>> temp = combinationSumGivenMaxMinElements(
