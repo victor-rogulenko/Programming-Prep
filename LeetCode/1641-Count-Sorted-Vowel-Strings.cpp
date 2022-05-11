@@ -13,25 +13,23 @@
 
 #include <cassert>
 #include <vector>
+#include <numeric> // std::accumulate
 
 int countVowelStrings(int n) {
     const int vowel_count = 5;
     std::vector<int> cnt_vowel_strings_starting_from_i(vowel_count, 1);
     // Iter 0 is taken care of above
     for (int iter = 1; iter < n; ++iter) {
-        std::vector<int> temp(vowel_count, 0);
         for (int idx = 0; idx < vowel_count; ++idx) {
-            for (int jdx = idx; jdx < vowel_count; ++jdx) {
-                temp[idx] += cnt_vowel_strings_starting_from_i[jdx];
+            for (int jdx = idx + 1; jdx < vowel_count; ++jdx) {
+                cnt_vowel_strings_starting_from_i[idx] += 
+                    cnt_vowel_strings_starting_from_i[jdx];
             }
         }
-        cnt_vowel_strings_starting_from_i = temp;
     }
-    int result = 0;
-    for (auto val : cnt_vowel_strings_starting_from_i) {
-        result += val;
-    }    
-    return result;
+    return std::accumulate(cnt_vowel_strings_starting_from_i.begin(),
+                           cnt_vowel_strings_starting_from_i.end(),
+                           0);
 }
 
 void RunTestCases() {
