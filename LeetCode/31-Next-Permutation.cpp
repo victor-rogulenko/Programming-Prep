@@ -13,8 +13,6 @@
 #include <algorithm> // std::reverse, std::iter_swap, std::next_permutation (for testing)
 #include <iostream>
 
-// 1 5 1
-
 template<class T>
 typename std::vector<T>::iterator binSearchRightmostMinGreater(
     typename std::vector<T>::iterator start, 
