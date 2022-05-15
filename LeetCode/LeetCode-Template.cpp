@@ -1,8 +1,10 @@
 // LeetCode: 
+// Contest Template
 // Created by Victor Rogulenko
-// May 14, 2022
+// May 15, 2022
 
-#include <cassert>
+#include <bits/stdc++.h>
+using namespace std;
 
 // Past new code here
 
