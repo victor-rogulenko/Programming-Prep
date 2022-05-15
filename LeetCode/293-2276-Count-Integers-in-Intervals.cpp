@@ -30,21 +30,51 @@ public:
     CountIntervals() {       
     }
 
-    int CountIntersections(int left, int right) {
-        // use set::lower_bound
-    }
-    
     void add(int left, int right) {
-        int overlap = CountIntersections(left, right);
-        result += (right - left + 1) - overlap;
-        // add the interval into the storage
+        auto iter = intervals.lower_bound(make_pair(left, left));
+        if (iter != intervals.begin()) {
+            --iter;
+        }
+        // iter is the first interval that starts to the left of [left, right]
+        // or the leftmost element in the set (if it's to the right of [left, right])
+
+        int combined_left = left;
+        int combined_right = right;
+
+        // Find all the intersections of current intervals with [left, right] 
+        vector<pair<int, int>> to_be_removed;
+
+        while (iter != intervals.end() && iter->first <= right) {
+            // If iter does not intersect [left, right], skip it
+            if (iter->second < left - 1) {
+                ++iter;
+                continue;
+            }
+            // Merge iter with the new interval [left, right]
+            combined_left = min(combined_left, iter->first);
+            combined_right = max(combined_right, iter->second);
+
+            to_be_removed.push_back(*iter);
+            ++iter;
+        }
+
+        // Remove all the redundanct intervals;
+        for (auto& elm : to_be_removed) {
+            result -= (elm.second - elm.first + 1);
+            intervals.erase(elm);
+        }
+
+        // add combined_left, combined_right
+        intervals.insert(make_pair(combined_left, combined_right));
+        result += combined_right - combined_left + 1;
     }
     
     int count() {
         return result;
     }
+
 private:
-    vector<pair<int, int>> intervals;
+    set<pair<int, int>> intervals;
     int result = 0;
 };
 
