@@ -3,13 +3,22 @@
 // Created by Victor Rogulenko
 // May 15, 2022
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <cassert>
 
 // Past new code here
 
+int case_num = 1;
+
+void TestCase(int input, int expected) {
+    int result = Solution().method(input);
+    std::cout << "Case #" << case_num << ": expected = " << expected <<
+        ", result = " << result << "\n";
+    ++case_num;
+    assert(expected == result);
+}
+
 void RunTestCases() {
-    assert(TBD() == "");
+    TestCase(2, 2);
 }
 
 int main() {
