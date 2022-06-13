@@ -15,7 +15,7 @@
 // 1 <= Node.val <= 10^5
 
 // MAJOR IDEA: 1) Put values of the the second half into a stack
-// 2) Revert the second half
+// 2) Reverse the second half
 
 /**
  * Definition for singly-linked list.
